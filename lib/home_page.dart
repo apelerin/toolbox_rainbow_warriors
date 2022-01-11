@@ -9,7 +9,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          Text('toto')
+        ],
+      ),
       body:
       GridView.count(
         primary: false,
@@ -21,6 +25,16 @@ class _HomePageState extends State<HomePage> {
           InkWell(
             onTap: () {
               Navigator.of(context).pushNamed('test_page');
+            },
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              child: const Text("Testing page BLANK"),
+              color: Colors.teal[100],
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.of(context).pushNamed('get_file_size');
             },
             child: Container(
               padding: const EdgeInsets.all(8),

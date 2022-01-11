@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toolbox/home_page.dart';
 import 'package:toolbox/test_page.dart';
+import 'get_file_size.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +17,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        TestPage.tag: (context) => TestPage()
+        TestPage.tag: (context) => TestPage(),
+        GetFileSize.tag: (context) => GetFileSize(),
         //fill with routes for utilitary
       },
       debugShowCheckedModeBanner: false,
