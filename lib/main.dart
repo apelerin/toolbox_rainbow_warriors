@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toolbox/home_page.dart';
+import 'package:toolbox/promotion_page.dart';
 import 'package:toolbox/test_page.dart';
 import 'get_file_size.dart';
 
@@ -19,6 +20,7 @@ class _MyAppState extends State<MyApp> {
       routes: {
         TestPage.tag: (context) => TestPage(),
         GetFileSize.tag: (context) => GetFileSize(),
+        PromotionPage.tag: (context) => PromotionPage(),
         //fill with routes for utilitary
       },
       debugShowCheckedModeBanner: false,
