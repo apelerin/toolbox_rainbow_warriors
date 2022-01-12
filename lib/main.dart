@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toolbox/distance_conversion_page.dart';
 import 'package:toolbox/home_page.dart';
 import 'package:toolbox/promotion_page.dart';
 import 'package:toolbox/test_page.dart';
@@ -21,7 +22,8 @@ class _MyAppState extends State<MyApp> {
         TestPage.tag: (context) => TestPage(),
         GetFileSize.tag: (context) => GetFileSize(),
         PromotionPage.tag: (context) => PromotionPage(),
-        //fill with routes for utilitary
+        DistanceConversionPage.tag: (context) => DistanceConversionPage(),
+        //fill with routes for each utility
       },
       debugShowCheckedModeBanner: false,
       title: 'Coding ProjectFlutter Demo',

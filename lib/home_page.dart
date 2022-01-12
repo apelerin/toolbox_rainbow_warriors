@@ -9,9 +9,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          actions: [Text('toto')],
-        ),
+        appBar: AppBar(),
         body: GridView.count(
           primary: false,
           padding: const EdgeInsets.all(20),
@@ -35,7 +33,17 @@ class _HomePageState extends State<HomePage> {
               },
               child: Container(
                 padding: const EdgeInsets.all(8),
-                child: const Text("Promotion utility"),
+                child: const Text("Calcul de promotion"),
+                color: Colors.teal[100],
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.of(context).pushNamed('distance_conversion_page');
+              },
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                child: const Text("Conversion des distances"),
                 color: Colors.teal[100],
               ),
             ),
