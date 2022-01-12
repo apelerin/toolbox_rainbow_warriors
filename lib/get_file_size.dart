@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:io';
 
 class GetFileSize extends StatefulWidget {
   static const String tag = "get_file_size";
@@ -13,9 +14,7 @@ class _GetFileSize extends State<GetFileSize> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text('Byte convertor'), centerTitle: true),
-        body: Center(
-          child: MyStatefulWidget()
-        ));
+        body: Center(child: MyStatefulWidget()));
   }
 }
 
@@ -29,69 +28,78 @@ class MyStatefulWidget extends StatefulWidget {
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   String valueDropDown1 = 'O';
   String valueDropDown2 = 'O';
-  var valueTextField1 = '';
-  var valueTextField2 = '';
-  final controllerTF1  = TextEditingController();
-  final controllerTF2  = TextEditingController();
+  final controllerTF1 = TextEditingController();
+  final controllerTF2 = TextEditingController();
 
-
-  handleChangeTF(String Text, String firstValueDropDown, TextEditingController secondValueTextField, String secondValueDropDown) {
-    double valueInOctet = double.parse(Text);
-    switch(firstValueDropDown) {
-      case 'Ko': {
-        valueInOctet = double.parse(Text) * 1000;
-      }
-      break;
-      case 'Mo': {
-        valueInOctet = double.parse(Text) * 1000000;
-      }
-      break;
-      case 'Go': {
-        valueInOctet = double.parse(Text) * 1000000000;
-      }
-      break;
-      case 'To': {
-        valueInOctet = double.parse(Text) * 1000000000000;
-      }
-      break;
+  handleChangeTF(String Text, String firstValueDropDown, TextEditingController secondValueController, String secondValueDropDown) {
+    if (Text == '') {
+      secondValueController.text = Text;
+      exit(0);
     }
-    converter(valueInOctet, secondValueTextField, secondValueDropDown);
+    double valueInOctet = double.parse(Text);
+
+    switch (firstValueDropDown) {
+      case 'Ko':
+        {
+          valueInOctet = double.parse(Text) * 1000;
+        }
+        break;
+      case 'Mo':
+        {
+          valueInOctet = double.parse(Text) * 1000000;
+        }
+        break;
+      case 'Go':
+        {
+          valueInOctet = double.parse(Text) * 1000000000;
+        }
+        break;
+      case 'To':
+        {
+          valueInOctet = double.parse(Text) * 1000000000000;
+        }
+        break;
+    }
+    converter(valueInOctet, secondValueController, secondValueDropDown);
   }
 
-  converter(double valueInOctet, TextEditingController valueSecondTF, String secondUnit) {
+  converter(double valueInOctet, TextEditingController valueSecondTF,
+      String secondUnit) {
     double convertedValue = 0;
-    switch(secondUnit) {
-      case 'O': {
-        convertedValue = valueInOctet;
-      }
-      break;
-      case 'Ko': {
-        convertedValue = valueInOctet/1000;
-      }
-      break;
-      case 'Mo': {
-        convertedValue = valueInOctet/1000000;
-      }
-      break;
-      case 'Go': {
-        convertedValue = valueInOctet/1000000000;
-      }
-      break;
-      case 'To': {
-        convertedValue = valueInOctet/1000000000000;
-      }
-      break;
+    switch (secondUnit) {
+      case 'O':
+        {
+          convertedValue = valueInOctet;
+        }
+        break;
+      case 'Ko':
+        {
+          convertedValue = valueInOctet / 1000;
+        }
+        break;
+      case 'Mo':
+        {
+          convertedValue = valueInOctet / 1000000;
+        }
+        break;
+      case 'Go':
+        {
+          convertedValue = valueInOctet / 1000000000;
+        }
+        break;
+      case 'To':
+        {
+          convertedValue = valueInOctet / 1000000000000;
+        }
+        break;
     }
     setState(() {
-      valueSecondTF.text = convertedValue.toString();
+        valueSecondTF.text = convertedValue.toString();
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
-
-
     return Column(
       children: [
         SizedBox(
@@ -103,10 +111,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   controller: controllerTF1,
                   decoration: InputDecoration(labelText: 'Enter value'),
                   onChanged: (Text) {
-                    setState(() {
-                      valueTextField1 = Text;
-                    });
-                    handleChangeTF(Text, valueDropDown1, controllerTF2, valueDropDown2);
+                    handleChangeTF(
+                        Text, valueDropDown1, controllerTF2, valueDropDown2);
                   },
                 )),
             Spacer(
@@ -123,7 +129,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   setState(() {
                     valueDropDown1 = newValue!;
                   });
-                  handleChangeTF(valueTextField1, valueDropDown1, controllerTF2, valueDropDown2);
+                  handleChangeTF(controllerTF1.text, valueDropDown1, controllerTF2,
+                      valueDropDown2);
                 },
                 items: <String>['O', 'Ko', 'Mo', 'Go', 'To']
                     .map<DropdownMenuItem<String>>((String value) {
@@ -152,10 +159,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   controller: controllerTF2,
                   decoration: InputDecoration(labelText: 'Enter value'),
                   onChanged: (Text) {
-                    setState(() {
-                      valueTextField2 = Text;
-                    });
-                    handleChangeTF(Text, valueDropDown2, controllerTF1, valueDropDown1);
+                    handleChangeTF(
+                        Text, valueDropDown2, controllerTF1, valueDropDown1);
                   },
                 )),
             Spacer(
@@ -172,7 +177,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   setState(() {
                     valueDropDown2 = newValue!;
                   });
-                  handleChangeTF(valueTextField2, valueDropDown1, controllerTF1, valueDropDown2);
+                  handleChangeTF(controllerTF2.text, valueDropDown1, controllerTF1,
+                      valueDropDown2);
                 },
                 items: <String>['O', 'Ko', 'Mo', 'Go', 'To']
                     .map<DropdownMenuItem<String>>((String value) {
