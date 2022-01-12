@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:toolbox/widgets/converter.dart';
 
 class DistanceConversionPage extends StatefulWidget {
   static const String tag = "distance_conversion_page";
 
   @override
   _DistanceConversionPageState createState() => _DistanceConversionPageState();
-}
-
-class Unit {
-  String shortName;
-  double multiplierToNanoMeter;
-
-  Unit(this.shortName, this.multiplierToNanoMeter);
 }
 
 class _DistanceConversionPageState extends State<DistanceConversionPage> {
@@ -58,25 +51,19 @@ class _DistanceConversionPageState extends State<DistanceConversionPage> {
           controllerInput2.text = '';
         }
         controllerInput2.text = (double.parse(controllerInput1.text) *
-                selectedUnit1.multiplierToNanoMeter /
-                selectedUnit2.multiplierToNanoMeter)
+                selectedUnit1.multiplierToSmallest /
+                selectedUnit2.multiplierToSmallest)
             .toString();
       } else {
         if (controllerInput2.text == '') {
           controllerInput1.text = '';
         }
         controllerInput1.text = (double.parse(controllerInput2.text) *
-                selectedUnit2.multiplierToNanoMeter /
-                selectedUnit1.multiplierToNanoMeter)
+                selectedUnit2.multiplierToSmallest /
+                selectedUnit1.multiplierToSmallest)
             .toString();
       }
     });
-  }
-
-  String compute(String input) {
-    double multiplier = selectedUnit1.multiplierToNanoMeter *
-        selectedUnit2.multiplierToNanoMeter;
-    return (double.parse(input) * multiplier).toString();
   }
 
   @override
@@ -84,56 +71,9 @@ class _DistanceConversionPageState extends State<DistanceConversionPage> {
     return Scaffold(
       appBar: AppBar(),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Column(
-              children: [
-                dropDownUnits(units, selectUnit1, selectedUnit1),
-                textInputNumberInSizeBox(controllerInput1, convert, "1"),
-                textInputNumberInSizeBox(controllerInput2, convert, "2"),
-                dropDownUnits(units, selectUnit2, selectedUnit2),
-              ],
-            ),
-          ],
-        ),
+        child: converterForm(units, selectUnit1, selectUnit2, controllerInput1,
+            controllerInput2, selectedUnit1, selectedUnit2, convert),
       ),
     );
   }
-}
-
-Widget dropDownUnits(List<Unit> units, Function selectedFunction, selected) {
-  return DropdownButton<Unit>(
-    value: selected,
-    items: units.map<DropdownMenuItem<Unit>>((Unit value) {
-      return DropdownMenuItem<Unit>(
-        value: value,
-        child: Text(value.shortName),
-      );
-    }).toList(),
-    onChanged: (Unit? newValue) {
-      selectedFunction(newValue);
-    },
-  );
-}
-
-Widget textInputNumberInSizeBox(
-    TextEditingController controller, Function convert, whichInput) {
-  return SizedBox(
-    width: 300,
-    child: TextField(
-      controller: controller,
-      keyboardType: TextInputType.number,
-      inputFormatters: <TextInputFormatter>[
-        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-      ],
-      onChanged: (String? newValue) {
-        convert(whichInput);
-      },
-      decoration: const InputDecoration(
-        border: OutlineInputBorder(),
-        labelText: 'Entrée',
-      ),
-    ),
-  );
 }
