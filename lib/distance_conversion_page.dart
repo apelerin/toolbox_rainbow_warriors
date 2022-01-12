@@ -23,9 +23,9 @@ class _DistanceConversionPageState extends State<DistanceConversionPage> {
     Unit("cm", 10000000),
     Unit("mm", 1000000),
     Unit("nm", 1),
-    Unit("yd", 9.14400000000),
-    Unit("ft", 3.04800000000),
-    Unit("in", 2.540000000),
+    Unit("yd", 914400000),
+    Unit("ft", 304800000),
+    Unit("in", 25400000),
   ];
 
   final controllerInput1 = TextEditingController();
@@ -54,11 +54,17 @@ class _DistanceConversionPageState extends State<DistanceConversionPage> {
   void convert(String whichInput) {
     setState(() {
       if (whichInput == "1") {
+        if (controllerInput1.text == '') {
+          controllerInput2.text = '';
+        }
         controllerInput2.text = (double.parse(controllerInput1.text) *
                 selectedUnit1.multiplierToNanoMeter /
                 selectedUnit2.multiplierToNanoMeter)
             .toString();
       } else {
+        if (controllerInput2.text == '') {
+          controllerInput1.text = '';
+        }
         controllerInput1.text = (double.parse(controllerInput2.text) *
                 selectedUnit2.multiplierToNanoMeter /
                 selectedUnit1.multiplierToNanoMeter)
@@ -121,7 +127,7 @@ Widget textInputNumberInSizeBox(
       inputFormatters: <TextInputFormatter>[
         FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
       ],
-      onEditingComplete: () {
+      onChanged: (String? newValue) {
         convert(whichInput);
       },
       decoration: const InputDecoration(
