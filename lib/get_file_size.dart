@@ -103,6 +103,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   controller: controllerTF1,
                   decoration: InputDecoration(labelText: 'Enter value'),
                   onChanged: (Text) {
+                    setState(() {
+                      valueTextField1 = Text;
+                    });
                     handleChangeTF(Text, valueDropDown1, controllerTF2, valueDropDown2);
                   },
                 )),
@@ -120,6 +123,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   setState(() {
                     valueDropDown1 = newValue!;
                   });
+                  handleChangeTF(valueTextField1, valueDropDown1, controllerTF2, valueDropDown2);
                 },
                 items: <String>['O', 'Ko', 'Mo', 'Go', 'To']
                     .map<DropdownMenuItem<String>>((String value) {
@@ -148,6 +152,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   controller: controllerTF2,
                   decoration: InputDecoration(labelText: 'Enter value'),
                   onChanged: (Text) {
+                    setState(() {
+                      valueTextField2 = Text;
+                    });
                     handleChangeTF(Text, valueDropDown2, controllerTF1, valueDropDown1);
                   },
                 )),
@@ -165,6 +172,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   setState(() {
                     valueDropDown2 = newValue!;
                   });
+                  handleChangeTF(valueTextField2, valueDropDown1, controllerTF1, valueDropDown2);
                 },
                 items: <String>['O', 'Ko', 'Mo', 'Go', 'To']
                     .map<DropdownMenuItem<String>>((String value) {
