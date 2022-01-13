@@ -5,6 +5,8 @@ import 'package:toolbox/promotion_page.dart';
 import 'package:toolbox/test_page.dart';
 import 'get_file_size.dart';
 import 'roman_nbrs_page.dart';
+import 'home_page.dart';
+import 'burger_menu.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,6 +27,7 @@ class _MyAppState extends State<MyApp> {
         PromotionPage.tag: (context) => PromotionPage(),
         DistanceConversionPage.tag: (context) => DistanceConversionPage(),
         RomanNbrs.tag: (context) => RomanNbrs(),
+        HomePage.tag: (context) => HomePage()
         //fill with routes for each utility
       },
       debugShowCheckedModeBanner: false,

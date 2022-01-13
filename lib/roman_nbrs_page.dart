@@ -83,7 +83,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             decimalNbr += actualNbr;
           }
         });
-        print(i.toString() + ' ' + romanNbr.length.toString());
       }
       controllerTF1.text = decimalNbr.toString();
     }
