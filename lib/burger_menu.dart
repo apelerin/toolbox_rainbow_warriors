@@ -14,7 +14,7 @@ class _BurgerMenuState extends State<BurgerMenu> {
         initialValue: Globals.burgerValue,
         onSelected: (int result) {
           Globals.burgerValue = result;
-          Navigator.pop(context);  // pop current page
+          Navigator.pop(context);
           Navigator.pushNamed(context, "home_page");
         },
         itemBuilder: (context) => [

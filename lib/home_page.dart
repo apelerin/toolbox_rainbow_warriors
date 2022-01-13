@@ -20,7 +20,9 @@ class _HomePageState extends State<HomePage> {
             BurgerMenu()
           ],
         ),
-        body: HomePageStyle.returnHomepageStyle(context)
+        body: Center(
+          child: HomePageStyle.returnHomepageStyle(context),
+        )
     );
   }
 }
