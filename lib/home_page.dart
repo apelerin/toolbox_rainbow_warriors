@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
               },
               child: Container(
                 padding: const EdgeInsets.all(8),
-                child: const Text("Temps depuis la naissance"),
+                child: const Text("Temps depuis deux dates"),
                 color: Colors.teal[100],
               ),
             ),
