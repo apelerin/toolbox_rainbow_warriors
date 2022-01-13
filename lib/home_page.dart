@@ -47,6 +47,26 @@ class _HomePageState extends State<HomePage> {
                 color: Colors.teal[100],
               ),
             ),
+            InkWell(
+              onTap: () {
+                Navigator.of(context).pushNamed('temps_depuis_naissance');
+              },
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                child: const Text("Temps depuis la naissance"),
+                color: Colors.teal[100],
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.of(context).pushNamed('temps_depuis_deux_dates');
+              },
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                child: const Text("Temps depuis la naissance"),
+                color: Colors.teal[100],
+              ),
+            ),
             // Add InkWell for each future utilitary tool + route key/value dictionnary
           ],
         ));

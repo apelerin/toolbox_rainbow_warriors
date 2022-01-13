@@ -4,6 +4,8 @@ import 'package:toolbox/home_page.dart';
 import 'package:toolbox/promotion_page.dart';
 import 'package:toolbox/test_page.dart';
 import 'get_file_size.dart';
+import 'temps_depuis_naissance.dart';
+import 'temps_depuis_deux_dates.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,6 +23,8 @@ class _MyAppState extends State<MyApp> {
       routes: {
         TestPage.tag: (context) => TestPage(),
         GetFileSize.tag: (context) => GetFileSize(),
+        TempsDepuisNaissance.tag: (context) => TempsDepuisNaissance(),
+        TempsDepuisDeuxDates.tag: (context) => TempsDepuisDeuxDates(),
         PromotionPage.tag: (context) => PromotionPage(),
         DistanceConversionPage.tag: (context) => DistanceConversionPage(),
         //fill with routes for each utility
