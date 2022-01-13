@@ -3,6 +3,7 @@ import 'package:toolbox/distance_conversion_page.dart';
 import 'package:toolbox/home_page.dart';
 import 'package:toolbox/promotion_page.dart';
 import 'package:toolbox/test_page.dart';
+import 'area_conversion_page.dart';
 import 'get_file_size.dart';
 
 void main() {
@@ -23,6 +24,7 @@ class _MyAppState extends State<MyApp> {
         GetFileSize.tag: (context) => GetFileSize(),
         PromotionPage.tag: (context) => PromotionPage(),
         DistanceConversionPage.tag: (context) => DistanceConversionPage(),
+        AreaConversionPage.tag: (context) => AreaConversionPage(),
         //fill with routes for each utility
       },
       debugShowCheckedModeBanner: false,
