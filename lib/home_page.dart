@@ -47,6 +47,16 @@ class _HomePageState extends State<HomePage> {
                 color: Colors.teal[100],
               ),
             ),
+            InkWell(
+              onTap: () {
+                Navigator.of(context).pushNamed('roman_nbrs_page');
+              },
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                child: const Text("Conversion en chiffres romains"),
+                color: Colors.teal[100],
+              ),
+            ),
             // Add InkWell for each future utilitary tool + route key/value dictionnary
           ],
         ));

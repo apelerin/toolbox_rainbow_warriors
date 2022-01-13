@@ -37,7 +37,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       exit(0);
     }
     double valueInOctet = double.parse(Text);
-
     switch (firstValueDropDown) {
       case 'Ko':
         {

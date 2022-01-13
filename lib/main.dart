@@ -4,6 +4,7 @@ import 'package:toolbox/home_page.dart';
 import 'package:toolbox/promotion_page.dart';
 import 'package:toolbox/test_page.dart';
 import 'get_file_size.dart';
+import 'roman_nbrs_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,6 +24,7 @@ class _MyAppState extends State<MyApp> {
         GetFileSize.tag: (context) => GetFileSize(),
         PromotionPage.tag: (context) => PromotionPage(),
         DistanceConversionPage.tag: (context) => DistanceConversionPage(),
+        RomanNbrs.tag: (context) => RomanNbrs(),
         //fill with routes for each utility
       },
       debugShowCheckedModeBanner: false,
