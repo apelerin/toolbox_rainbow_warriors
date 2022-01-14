@@ -10,6 +10,8 @@ import 'get_file_size.dart';
 import 'roman_nbrs_page.dart';
 import 'home_page.dart';
 import 'burger_menu.dart';
+import 'temps_depuis_naissance.dart';
+import 'temps_depuis_deux_dates.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,6 +29,8 @@ class _MyAppState extends State<MyApp> {
       routes: {
         TestPage.tag: (context) => TestPage(),
         GetFileSize.tag: (context) => GetFileSize(),
+        TempsDepuisNaissance.tag: (context) => TempsDepuisNaissance(),
+        TempsDepuisDeuxDates.tag: (context) => TempsDepuisDeuxDates(),
         PromotionPage.tag: (context) => PromotionPage(),
         DistanceConversionPage.tag: (context) => DistanceConversionPage(),
         AreaConversionPage.tag: (context) => AreaConversionPage(),
@@ -34,7 +38,6 @@ class _MyAppState extends State<MyApp> {
         TemperatureConversionPage.tag: (context) => TemperatureConversionPage(),
         RomanNbrs.tag: (context) => RomanNbrs(),
         HomePage.tag: (context) => HomePage()
-        //fill with routes for each utility
       },
       debugShowCheckedModeBanner: false,
       title: 'Coding ProjectFlutter Demo',
