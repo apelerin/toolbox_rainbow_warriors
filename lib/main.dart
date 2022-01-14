@@ -8,6 +8,8 @@ import 'package:toolbox/test_page.dart';
 import 'area_conversion_page.dart';
 import 'get_file_size.dart';
 import 'roman_nbrs_page.dart';
+import 'home_page.dart';
+import 'burger_menu.dart';
 
 void main() {
   runApp(MyApp());
@@ -31,6 +33,7 @@ class _MyAppState extends State<MyApp> {
         NumericConversionPage.tag: (context) => NumericConversionPage(),
         TemperatureConversionPage.tag: (context) => TemperatureConversionPage(),
         RomanNbrs.tag: (context) => RomanNbrs(),
+        HomePage.tag: (context) => HomePage()
         //fill with routes for each utility
       },
       debugShowCheckedModeBanner: false,
