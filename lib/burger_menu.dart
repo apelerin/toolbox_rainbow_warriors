@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'globals.dart';
 
+// Le widget du burger menu
 class BurgerMenu extends StatefulWidget {
   static const String tag = "burger_menu";
 
@@ -8,6 +9,7 @@ class BurgerMenu extends StatefulWidget {
   _BurgerMenuState createState() => _BurgerMenuState();
 }
 
+// Le burger menu
 class _BurgerMenuState extends State<BurgerMenu> {
   Widget build(BuildContext context) {
     return PopupMenuButton<int>(
@@ -17,6 +19,7 @@ class _BurgerMenuState extends State<BurgerMenu> {
           Navigator.pop(context);
           Navigator.pushNamed(context, "home_page");
         },
+        // Les options du menu button
         itemBuilder: (context) => [
               PopupMenuItem(
                 value: 1,

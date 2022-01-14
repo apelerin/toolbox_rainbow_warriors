@@ -15,7 +15,7 @@ class _GetFileSize extends State<GetFileSize> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Byte convertor'), centerTitle: true),
+        appBar: AppBar(title: const Text('Byte conversion'), centerTitle: true),
         body: Center(child: MyStatefulWidget()));
   }
 }
@@ -33,12 +33,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   final controllerTF1 = TextEditingController();
   final controllerTF2 = TextEditingController();
 
+  // Gère les entrées de l'utilisateur
   handleChangeTF(String Text, String firstValueDropDown,
       TextEditingController secondValueController, String secondValueDropDown) {
+    // Si le textfield est vide, on met l'autre vide aussi et on quitte la fonction
     if (Text == '') {
       secondValueController.text = Text;
       exit(0);
     }
+    // On récupère la valeur entrée par l'utilisateur et on la transforme en octets
     double valueInOctet = double.parse(Text);
     switch (firstValueDropDown) {
       case 'Ko':
@@ -65,6 +68,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     converter(valueInOctet, secondValueController, secondValueDropDown);
   }
 
+  // Convertit les octets en la valeur désirée
   converter(double valueInOctet, TextEditingController valueSecondTF,
       String secondUnit) {
     double convertedValue = 0;
@@ -96,6 +100,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         break;
     }
     setState(() {
+      // On modifie le champ de texte à la valeur convertie
       valueSecondTF.text = convertedValue.toString();
     });
   }
