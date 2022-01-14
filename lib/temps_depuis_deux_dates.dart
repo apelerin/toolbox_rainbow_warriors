@@ -31,6 +31,7 @@ class MyStatefulWidget extends StatefulWidget {
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   final valueDate1Text = TextEditingController();
   final valueDate2Text = TextEditingController();
+  final getDifferenceText = TextEditingController();
 
   DateTime valueDate1 = DateTime.now();
   DateTime valueDate2 = DateTime.now();
@@ -40,8 +41,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     int years = totalDays ~/ 365;
     int months = (totalDays - years * 365) ~/ 30;
     int days = totalDays - years * 365 - months * 30;
-    print(
-        "Il y a $years années, $months mois, $days jours entre les deux dates");
+    if (years > 0 || months > 0 || days > 0) {
+      getDifferenceText.text = "erreur";
+    }
+    getDifferenceText.text =
+        "Il y a $years années, $months mois, $days jours entre les deux dates";
   }
 
   @override
@@ -55,8 +59,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             Flexible(
               child: TextButton(
                   onPressed: () {
-                    DatePicker.showDatePicker(context, showTitleActions: true,
-                        onConfirm: (date) {
+                    DatePicker.showDatePicker(context,
+                        showTitleActions: true,
+                        maxTime: DateTime.now(), onConfirm: (date) {
                       valueDate1 = date;
                       valueDate1Text.text = date.toString();
                     }, currentTime: DateTime.now(), locale: LocaleType.fr);
@@ -103,7 +108,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             getDifference(valueDate1, valueDate2);
           },
           child: Text('CONFIRMER'),
-        )
+        ),
+        TextField(controller: getDifferenceText),
       ],
     );
   }
