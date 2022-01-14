@@ -86,7 +86,7 @@ class _TemperatureConversionPageState extends State<TemperatureConversionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: const Text('Temperature conversion'), centerTitle: true),
       body: Center(
         child: converterForm(units, selectUnit1, selectUnit2, controllerInput1,
             controllerInput2, selectedUnit1, selectedUnit2, convert),

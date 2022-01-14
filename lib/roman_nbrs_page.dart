@@ -14,7 +14,7 @@ class _RomanNbrs extends State<RomanNbrs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: const Text('Roman numbers conversion'), centerTitle: true),
       body: Center(
           child: Center(
         child: MyStatefulWidget(),
@@ -34,6 +34,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   final controllerTF1 = TextEditingController();
   final controllerTF2 = TextEditingController();
 
+  // La liste des symboles romains associés à leur aleur
   final decToRoman = {
     1000: 'M',
     900: 'CM',
@@ -50,7 +51,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     1: 'I',
   };
 
+  // Convertit la valeur en symbole ou en décimal
   converter(TextEditingController controller) {
+    // Si l'utilisateur a entré un nombre décimal
     if (controller == controllerTF1) {
       int decimalNbr = int.parse(controller.text);
       int nbrSymbol = 0;
@@ -62,29 +65,39 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         decimalNbr = decimalNbr % key;
       });
       controllerTF2.text = romanNbr;
-    } else {
+    }
+    // Si l'utilisateur a entré des symbôles romains
+    else {
       String romanNbr = controllerTF2.text;
       int decimalNbr = 0;
       int actualNbr = 0;
 
+      // On parcourt la string de symbôles
       for (int i = 0, o = 0; i < romanNbr.length; i++, o = i) {
+        // On regarde la correspondance du symbôle dans la liste de symbôles
         decToRoman.forEach((key, value) {
+          // Quand on a trouvé une correspondance
           if (romanNbr[i] == value) {
             actualNbr = key;
+            // On regarde si il y a un charactère qui suit
             if (i + 1 < romanNbr.length) {
               decToRoman.forEach((key, value) {
                 if (romanNbr[o + 1] == value) {
+                  // Si ce charactère est plus grand que celui actuel
                   if (actualNbr < key) {
+                    // Sa valeur devient celle du prochain charactère - sa valeur actuelle
                     actualNbr = key - actualNbr;
                     i++;
                   }
                 }
               });
             }
+            // On ajoute la valeur trouvée au nombre décimal
             decimalNbr += actualNbr;
           }
         });
       }
+      // On affiche le nombre décimal dans le TextField
       controllerTF1.text = decimalNbr.toString();
     }
   }
