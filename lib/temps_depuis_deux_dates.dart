@@ -38,6 +38,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   getDifference(DateTime valueDate1, DateTime valueDate2) {
     int totalDays = valueDate1.difference(valueDate2).inDays;
+    totalDays = totalDays * -1;
     int years = totalDays ~/ 365;
     int months = (totalDays - years * 365) ~/ 30;
     int days = totalDays - years * 365 - months * 30;
