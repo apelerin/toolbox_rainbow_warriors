@@ -67,18 +67,23 @@ class _TemperatureConversionPageState extends State<TemperatureConversionPage> {
       return;
     }
     String convertedInput;
-    if (unitModified.shortName == "°C" && unitToConvertTo.shortName == "°C") {
-      convertedInput = modifiedInput.text;
-    } else if (unitModified.shortName == "°C") {
-      convertedInput =
-          converterDic[unitToConvertTo.shortName]![1](modifiedInput.text);
-    } else if (unitToConvertTo.shortName == "°C") {
-      convertedInput =
-          converterDic[unitModified.shortName]![0](modifiedInput.text);
-    } else {
-      var result1 =
-          converterDic[unitModified.shortName]![0](modifiedInput.text);
-      convertedInput = converterDic[unitToConvertTo.shortName]![1](result1);
+    try {
+      if (unitModified.shortName == "°C" && unitToConvertTo.shortName == "°C") {
+        convertedInput = modifiedInput.text;
+      } else if (unitModified.shortName == "°C") {
+        convertedInput =
+            converterDic[unitToConvertTo.shortName]![1](modifiedInput.text);
+      } else if (unitToConvertTo.shortName == "°C") {
+        convertedInput =
+            converterDic[unitModified.shortName]![0](modifiedInput.text);
+      } else {
+        var result1 =
+            converterDic[unitModified.shortName]![0](modifiedInput.text);
+        convertedInput = converterDic[unitToConvertTo.shortName]![1](result1);
+      }
+    } catch (e) {
+      log(e.toString());
+      convertedInput = '';
     }
     toModifyInput.text = convertedInput;
   }

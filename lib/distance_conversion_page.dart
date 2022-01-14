@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:toolbox/widgets/converter.dart';
 
@@ -47,25 +48,29 @@ class _DistanceConversionPageState extends State<DistanceConversionPage> {
   void convert(String whichInput) {
     setState(() {
       if (whichInput == "1") {
-        if (controllerInput1.text == '') {
-          controllerInput2.text = '';
-          return;
-        }
-        controllerInput2.text = (double.parse(controllerInput1.text) *
-                selectedUnit1.multiplierToSmallest /
-                selectedUnit2.multiplierToSmallest)
-            .toString();
+        subConvert(
+            selectedUnit1, selectedUnit2, controllerInput1, controllerInput2);
       } else {
-        if (controllerInput2.text == '') {
-          controllerInput1.text = '';
-          return;
-        }
-        controllerInput1.text = (double.parse(controllerInput2.text) *
-                selectedUnit2.multiplierToSmallest /
-                selectedUnit1.multiplierToSmallest)
-            .toString();
+        subConvert(
+            selectedUnit2, selectedUnit1, controllerInput2, controllerInput1);
       }
     });
+  }
+
+  void subConvert(unitModified, unitToConvertTo, inputModified, inputToModify) {
+    if (inputModified.text == '') {
+      inputToModify.text = '';
+      return;
+    }
+    try {
+      inputToModify.text = (double.parse(inputModified.text) *
+              unitModified.multiplierToSmallest /
+              unitToConvertTo.multiplierToSmallest)
+          .toString();
+    } catch (e) {
+      log(e.toString());
+      inputToModify.text = '';
+    }
   }
 
   @override

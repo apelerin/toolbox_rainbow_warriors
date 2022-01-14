@@ -18,6 +18,7 @@ class _NumericConversionPageState extends State<NumericConversionPage> {
     Unit("HEX", 0),
   ];
 
+  // key-value list used to map functions to convert units to/from decimal
   var converterDic = {
     "BIN": [binToDec, decToBin],
     "OCT": [octToDec, decToOct],
@@ -70,18 +71,24 @@ class _NumericConversionPageState extends State<NumericConversionPage> {
       return;
     }
     String convertedInput;
-    if (unitModified.shortName == "DEC" && unitToConvertTo.shortName == "DEC") {
-      convertedInput = modifiedInput.text;
-    } else if (unitModified.shortName == "DEC") {
-      convertedInput =
-          converterDic[unitToConvertTo.shortName]![1](modifiedInput.text);
-    } else if (unitToConvertTo.shortName == "DEC") {
-      convertedInput =
-          converterDic[unitModified.shortName]![0](modifiedInput.text);
-    } else {
-      var result1 =
-          converterDic[unitModified.shortName]![0](modifiedInput.text);
-      convertedInput = converterDic[unitToConvertTo.shortName]![1](result1);
+    try {
+      if (unitModified.shortName == "DEC" &&
+          unitToConvertTo.shortName == "DEC") {
+        convertedInput = modifiedInput.text;
+      } else if (unitModified.shortName == "DEC") {
+        convertedInput =
+            converterDic[unitToConvertTo.shortName]![1](modifiedInput.text);
+      } else if (unitToConvertTo.shortName == "DEC") {
+        convertedInput =
+            converterDic[unitModified.shortName]![0](modifiedInput.text);
+      } else {
+        var result1 =
+            converterDic[unitModified.shortName]![0](modifiedInput.text);
+        convertedInput = converterDic[unitToConvertTo.shortName]![1](result1);
+      }
+    } catch (e) {
+      log(e.toString());
+      convertedInput = '';
     }
     toModifyInput.text = convertedInput;
   }
