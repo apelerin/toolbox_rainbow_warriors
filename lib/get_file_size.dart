@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 
+import 'package:flutter/services.dart';
+
 class GetFileSize extends StatefulWidget {
   static const String tag = "get_file_size";
 
@@ -107,6 +109,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             Flexible(
                 flex: 4,
                 child: TextFormField(
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                  ],
                   controller: controllerTF1,
                   decoration: InputDecoration(labelText: 'Enter value'),
                   onChanged: (Text) {
@@ -155,6 +160,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             Flexible(
                 flex: 4,
                 child: TextFormField(
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                  ],
                   controller: controllerTF2,
                   decoration: InputDecoration(labelText: 'Enter value'),
                   onChanged: (Text) {

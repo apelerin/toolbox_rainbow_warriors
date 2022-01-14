@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class RomanNbrs extends StatefulWidget {
   static const String tag = "roman_nbrs_page";
@@ -83,7 +84,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             decimalNbr += actualNbr;
           }
         });
-        print(i.toString() + ' ' + romanNbr.length.toString());
       }
       controllerTF1.text = decimalNbr.toString();
     }
@@ -99,6 +99,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             Flexible(
                 flex: 4,
                 child: TextFormField(
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                  ],
                   controller: controllerTF1,
                   decoration: InputDecoration(labelText: 'Nombres décimaux'),
                   onChanged: (Text) {
@@ -112,6 +115,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 flex: 4,
                 child: TextFormField(
                   controller: controllerTF2,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(RegExp(r'^M{0,3}(?:C[MD]|D?C{0,3})(?:X[CL]|L?X{0,3})(?:I[XV]|V?I{0,3})')),
+                  ],
                   decoration: InputDecoration(labelText: 'Nombres romains'),
                   onChanged: (Text) {
                     converter(controllerTF2);
