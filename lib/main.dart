@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toolbox/distance_conversion_page.dart';
 import 'package:toolbox/home_page.dart';
+import 'package:toolbox/numeric_conversion_page.dart';
 import 'package:toolbox/promotion_page.dart';
 import 'package:toolbox/test_page.dart';
 import 'area_conversion_page.dart';
@@ -25,6 +26,7 @@ class _MyAppState extends State<MyApp> {
         PromotionPage.tag: (context) => PromotionPage(),
         DistanceConversionPage.tag: (context) => DistanceConversionPage(),
         AreaConversionPage.tag: (context) => AreaConversionPage(),
+        NumericConversionPage.tag: (context) => NumericConversionPage(),
         //fill with routes for each utility
       },
       debugShowCheckedModeBanner: false,
