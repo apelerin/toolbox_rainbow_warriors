@@ -40,7 +40,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       getDifferenceText.text = "erreur";
     }
     getDifferenceText.text =
-        "Il y a $months mois, $days jours, $hours heures depuis mon anniversaire.";
+        "Il y a $months mois, $days jours, $hours heures depuis ma date de naissance.";
   }
 
   @override
