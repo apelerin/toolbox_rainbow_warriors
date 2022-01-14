@@ -16,20 +16,28 @@ Widget converterForm(
     controllerInput2,
     selectedUnit1,
     selectedUnit2,
-    Function convert) {
+    Function convert,
+    {bool allowDecimal = false}) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       Column(
         children: [
           dropDownUnits(units, selectUnit1, selectedUnit1),
-          textInputNumberInSizeBox(controllerInput1, convert, "1"),
-          textInputNumberInSizeBox(controllerInput2, convert, "2"),
+          chooseTextField(controllerInput1, convert, "1", allowDecimal),
+          chooseTextField(controllerInput2, convert, "2", allowDecimal),
           dropDownUnits(units, selectUnit2, selectedUnit2),
         ],
       ),
     ],
   );
+}
+
+Widget chooseTextField(TextEditingController controller, Function convert,
+    whichInput, allowDecimal) {
+  return allowDecimal
+      ? textFieldAllowDecimal(controller, convert, whichInput)
+      : textInputNumberInSizeBox(controller, convert, whichInput);
 }
 
 Widget dropDownUnits(List<Unit> units, Function selectedFunction, selected) {
@@ -57,6 +65,25 @@ Widget textInputNumberInSizeBox(
       inputFormatters: <TextInputFormatter>[
         FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
       ],
+      onChanged: (String? newValue) {
+        convert(whichInput);
+      },
+      decoration: const InputDecoration(
+        border: OutlineInputBorder(),
+        labelText: 'Entrée',
+      ),
+    ),
+  );
+}
+
+Widget textFieldAllowDecimal(
+    TextEditingController controller, Function convert, whichInput) {
+  return SizedBox(
+    width: 300,
+    child: TextField(
+      controller: controller,
+      keyboardType:
+          const TextInputType.numberWithOptions(decimal: true, signed: false),
       onChanged: (String? newValue) {
         convert(whichInput);
       },

@@ -49,6 +49,7 @@ class _DistanceConversionPageState extends State<DistanceConversionPage> {
       if (whichInput == "1") {
         if (controllerInput1.text == '') {
           controllerInput2.text = '';
+          return;
         }
         controllerInput2.text = (double.parse(controllerInput1.text) *
                 selectedUnit1.multiplierToSmallest /
@@ -57,6 +58,7 @@ class _DistanceConversionPageState extends State<DistanceConversionPage> {
       } else {
         if (controllerInput2.text == '') {
           controllerInput1.text = '';
+          return;
         }
         controllerInput1.text = (double.parse(controllerInput2.text) *
                 selectedUnit2.multiplierToSmallest /
@@ -72,7 +74,8 @@ class _DistanceConversionPageState extends State<DistanceConversionPage> {
       appBar: AppBar(),
       body: Center(
         child: converterForm(units, selectUnit1, selectUnit2, controllerInput1,
-            controllerInput2, selectedUnit1, selectedUnit2, convert),
+            controllerInput2, selectedUnit1, selectedUnit2, convert,
+            allowDecimal: true),
       ),
     );
   }

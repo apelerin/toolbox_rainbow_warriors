@@ -70,7 +70,8 @@ class _AreaConversionPageState extends State<AreaConversionPage> {
       appBar: AppBar(),
       body: Center(
         child: converterForm(units, selectUnit1, selectUnit2, controllerInput1,
-            controllerInput2, selectedUnit1, selectedUnit2, convert),
+            controllerInput2, selectedUnit1, selectedUnit2, convert,
+            allowDecimal: true),
       ),
     );
   }
