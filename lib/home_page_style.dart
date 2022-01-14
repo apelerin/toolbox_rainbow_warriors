@@ -11,7 +11,7 @@ class HomePageStyle {
           padding: const EdgeInsets.all(20),
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
-          crossAxisCount: 4,
+          crossAxisCount: 2,
           children: returnInkWells(context, dictBool, changeBool));
     } else if (Globals.burgerValue == 2) {
       return ListView(children: returnInkWells(context, dictBool, changeBool));
@@ -22,8 +22,10 @@ class HomePageStyle {
           child: element,
         ));
       });
-      return Column(
-        children: cardList,
+      return SingleChildScrollView(
+        child: Column(
+          children: cardList,
+        ),
       );
     }
   }
