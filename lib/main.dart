@@ -3,6 +3,7 @@ import 'package:toolbox/distance_conversion_page.dart';
 import 'package:toolbox/home_page.dart';
 import 'package:toolbox/numeric_conversion_page.dart';
 import 'package:toolbox/promotion_page.dart';
+import 'package:toolbox/temperature_conversion_page.dart';
 import 'package:toolbox/test_page.dart';
 import 'area_conversion_page.dart';
 import 'get_file_size.dart';
@@ -27,6 +28,7 @@ class _MyAppState extends State<MyApp> {
         DistanceConversionPage.tag: (context) => DistanceConversionPage(),
         AreaConversionPage.tag: (context) => AreaConversionPage(),
         NumericConversionPage.tag: (context) => NumericConversionPage(),
+        TemperatureConversionPage.tag: (context) => TemperatureConversionPage(),
         //fill with routes for each utility
       },
       debugShowCheckedModeBanner: false,
