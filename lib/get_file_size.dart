@@ -33,7 +33,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   final controllerTF1 = TextEditingController();
   final controllerTF2 = TextEditingController();
 
-  handleChangeTF(String Text, String firstValueDropDown, TextEditingController secondValueController, String secondValueDropDown) {
+  handleChangeTF(String Text, String firstValueDropDown,
+      TextEditingController secondValueController, String secondValueDropDown) {
     if (Text == '') {
       secondValueController.text = Text;
       exit(0);
@@ -95,7 +96,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         break;
     }
     setState(() {
-        valueSecondTF.text = convertedValue.toString();
+      valueSecondTF.text = convertedValue.toString();
     });
   }
 
@@ -133,8 +134,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   setState(() {
                     valueDropDown1 = newValue!;
                   });
-                  handleChangeTF(controllerTF1.text, valueDropDown1, controllerTF2,
-                      valueDropDown2);
+                  handleChangeTF(controllerTF1.text, valueDropDown1,
+                      controllerTF2, valueDropDown2);
                 },
                 items: <String>['O', 'Ko', 'Mo', 'Go', 'To']
                     .map<DropdownMenuItem<String>>((String value) {
@@ -184,8 +185,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   setState(() {
                     valueDropDown2 = newValue!;
                   });
-                  handleChangeTF(controllerTF2.text, valueDropDown1, controllerTF1,
-                      valueDropDown2);
+                  handleChangeTF(controllerTF2.text, valueDropDown2,
+                      controllerTF1, valueDropDown1);
                 },
                 items: <String>['O', 'Ko', 'Mo', 'Go', 'To']
                     .map<DropdownMenuItem<String>>((String value) {
