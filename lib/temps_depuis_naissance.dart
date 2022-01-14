@@ -36,6 +36,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     int years = totalDays ~/ 365;
     int months = (totalDays - years * 365) ~/ 30;
     int days = totalDays - years * 365 - months * 30;
+    if (years > 0 || months > 0 || days > 0) {
+      getDifferenceText.text = "erreur";
+    }
     getDifferenceText.text =
         "Il y a $years années, $months mois, $days jours entre les deux dates";
   }

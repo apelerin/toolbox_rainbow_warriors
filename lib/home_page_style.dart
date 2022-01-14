@@ -2,7 +2,9 @@ import 'globals.dart';
 import 'package:flutter/material.dart';
 
 class HomePageStyle {
-  static returnHomepageStyle(BuildContext context) {
+  static var dictBool;
+
+  static returnHomepageStyle(BuildContext context, dictBool, changeBool) {
     if (Globals.burgerValue == 1) {
       return GridView.count(
           primary: false,
@@ -10,12 +12,12 @@ class HomePageStyle {
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           crossAxisCount: 4,
-          children: returnInkWells(context));
+          children: returnInkWells(context, dictBool, changeBool));
     } else if (Globals.burgerValue == 2) {
-      return ListView(children: returnInkWells(context));
+      return ListView(children: returnInkWells(context, dictBool, changeBool));
     } else if (Globals.burgerValue == 3) {
       List<Widget> cardList = [];
-      returnInkWells(context).forEach((element) {
+      returnInkWells(context, dictBool, changeBool).forEach((element) {
         cardList.add(Card(
           child: element,
         ));
@@ -26,98 +28,71 @@ class HomePageStyle {
     }
   }
 
-  static List<Widget> returnInkWells(BuildContext context) {
+  static List<Widget> returnInkWells(
+      BuildContext context, dictBool, changeBool) {
     return <Widget>[
-      InkWell(
-        onTap: () {
-          Navigator.of(context).pushNamed('get_file_size');
-        },
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text("Taille des fichiers"),
-          color: Colors.teal[100],
-        ),
-      ),
-      InkWell(
-        onTap: () {
-          Navigator.of(context).pushNamed('promotion_page');
-        },
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text("Calcul de promotion"),
-          color: Colors.teal[100],
-        ),
-      ),
-      InkWell(
-        onTap: () {
-          Navigator.of(context).pushNamed('distance_conversion_page');
-        },
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text("Conversion des distances"),
-          color: Colors.teal[100],
-        ),
-      ),
-      InkWell(
-        onTap: () {
-          Navigator.of(context).pushNamed('roman_nbrs_page');
-        },
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text("Conversion en chiffres romains"),
-          color: Colors.teal[100],
-        ),
-      ),
-      InkWell(
-        onTap: () {
-          Navigator.of(context).pushNamed('temperature_conversion_page');
-        },
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text("Conversion de températures"),
-          color: Colors.teal[100],
-        ),
-      ),
-      InkWell(
-        onTap: () {
-          Navigator.of(context).pushNamed('numeric_conversion_page');
-        },
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text("Conversion numérique"),
-          color: Colors.teal[100],
-        ),
-      ),
-      InkWell(
-        onTap: () {
-          Navigator.of(context).pushNamed('area_conversion_page');
-        },
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text("Conversion des aires"),
-          color: Colors.teal[100],
-        ),
-      ),
-      InkWell(
-        onTap: () {
-          Navigator.of(context).pushNamed('temps_depuis_naissance');
-        },
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text("Temps depuis la naissance"),
-          color: Colors.teal[100],
-        ),
-      ),
-      InkWell(
-        onTap: () {
-          Navigator.of(context).pushNamed('temps_depuis_deux_dates');
-        },
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text("Temps depuis la naissance"),
-          color: Colors.teal[100],
-        ),
-      ),
+      inkWellAnimated("get_file_size", dictBool["get_file_size"],
+          "Conversion taille des fichiers", context, changeBool),
+      inkWellAnimated("promotion_page", dictBool["promotion_page"],
+          "Calcul promotion", context, changeBool),
+      inkWellAnimated("roman_nbrs_page", dictBool["roman_nbrs_page"],
+          "Conversion chiffres romains", context, changeBool),
+      inkWellAnimated(
+          "distance_conversion_page",
+          dictBool["distance_conversion_page"],
+          "Conversion distances",
+          context,
+          changeBool),
+      inkWellAnimated(
+          "temperature_conversion_page",
+          dictBool["temperature_conversion_page"],
+          "Conversion temperature",
+          context,
+          changeBool),
+      inkWellAnimated(
+          "numeric_conversion_page",
+          dictBool["numeric_conversion_page"],
+          "Conversion numériques",
+          context,
+          changeBool),
+      inkWellAnimated("area_conversion_page", dictBool["area_conversion_page"],
+          "Conversion aires", context, changeBool),
+      inkWellAnimated(
+          "temps_depuis_naissance",
+          dictBool["temps_depuis_naissance"],
+          "Calcul temps depuis la naissance",
+          context,
+          changeBool),
+      inkWellAnimated(
+          "temps_depuis_deux_dates",
+          dictBool["temps_depuis_deux_dates"],
+          "Calcul temps entre deux dates",
+          context,
+          changeBool),
     ];
   }
+}
+
+Widget inkWellAnimated(tag, boolPage, String title, context, changeBool) {
+  return InkWell(
+    onTap: () {
+      Navigator.of(context).pushNamed(tag);
+    },
+    onHover: (hovering) {
+      changeBool(tag, hovering);
+    },
+    child: AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
+      curve: Curves.ease,
+      padding: EdgeInsets.all(boolPage ? 45 : 30),
+      decoration: BoxDecoration(
+        color: boolPage ? Colors.indigoAccent : Colors.green,
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Text(
+        title,
+        style: TextStyle(fontSize: 20, color: Colors.white),
+      ),
+    ),
+  );
 }
